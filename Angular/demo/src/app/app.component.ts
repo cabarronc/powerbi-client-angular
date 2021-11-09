@@ -8,6 +8,8 @@ import { PowerBIReportEmbedComponent } from 'powerbi-client-angular';
 import 'powerbi-report-authoring';
 import { errorClass, errorElement, hidden, position, reportUrl, successClass, successElement } from '../constants';
 import { HttpService } from './services/http.service';
+import {ChangeDetectionStrategy} from '@angular/core';
+
 
 // Handles the embed config response for embedding
 export interface ConfigResponse {
@@ -22,6 +24,7 @@ export interface ConfigResponse {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   // Wrapper object to access report properties

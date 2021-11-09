@@ -10,10 +10,14 @@
     "npm:pack": "cd dist/powerbi-client-angular && npm pack",
     "package": "ng build && npm run npm:pack",
     "demo": "npm install && ng serve",
-    "start": "ng serve"
+    "start": "ng serve",
+    "devserver": "live-server --browser=Chrome"
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^12.0.5",
+    "@angular/cdk": "^12.2.12",
+    "@angular/material": "^12.2.12",
     "@angular/common": "~12.0.1",
     "@angular/compiler": "~12.0.1",
     "@angular/core": "~12.0.1",

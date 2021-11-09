@@ -16,7 +16,7 @@ Licensed under the MIT License. -->
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#"><a class="text-primary">CRECE</a></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -30,7 +30,7 @@ Licensed under the MIT License. -->
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <button (click)="embedReport()" >CRECE</button>
         </li>
       </ul>
       <form class="d-flex">
@@ -40,29 +40,31 @@ Licensed under the MIT License. -->
     </div>
   </div>
 </nav>
-
+<div class="overflow-auto">
 <div class="controls" *ngIf="isEmbedded; else embedReportFlow">
   <button (click)="deleteVisual()">Delete Visual</button>
   <button (click)="hideFilterPane()">Hide Filter Pane</button>
   <button (click)="setDataSelectedEvent()">Set Event</button>
-  <div class="display-message" #status>{{ displayMessage }}</div>
+  <div class="display-message" #status>{{ displayMessage }}</div> 
 </div>
 <ng-template #embedReportFlow>
-  <div class="display-message position" #status>
+   <div class="display-message position" #status>
     <label>{{ displayMessage }}</label>
-  </div>
-  <div class="embed-report">
+  </div> 
+  <!-- <div class="embed-report">
     <button (click)="embedReport()" id="embed-action" #embedReportBtn>CRECE</button>
-  </div>
-  <div class="separator"></div>
+  </div> -->
+  <!-- <div class="separator"></div> -->
 </ng-template>
 
 <powerbi-report [embedConfig]="reportConfig" [cssClassName]="reportClass" [phasedEmbedding]="phasedEmbeddingFlag" [eventHandlers]="eventHandlersMap">
 </powerbi-report>
+</div>
+
 
 <div class="footer">
   <div class="footer-text">
-    <!-- GitHub:
-    <a href="https://github.com/microsoft/powerBI-client-angular"> https://github.com/microsoft/PowerBI-client-angular </a> -->
+     GitHub:
+    <a href="https://github.com/microsoft/powerBI-client-angular"> https://github.com/microsoft/PowerBI-client-angular </a> 
   </div>
 </div>
