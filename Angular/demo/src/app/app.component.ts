@@ -37,7 +37,7 @@ export class AppComponent {
   isEmbedded = false;
 
   // Overall status message of embedding
-  displayMessage = 'The report is bootstrapped. Click Embed Report button to set the access token.';
+  displayMessage = '';
 
   // CSS Class to be passed to the wrapper
   // Hide the report container initially
@@ -50,7 +50,7 @@ export class AppComponent {
   // Values for properties like embedUrl, accessToken and settings will be set on click of button
   reportConfig: IReportEmbedConfiguration = {
     type: 'report',
-    embedUrl: undefined,
+    embedUrl: 'https://app.powerbi.com/view?r=eyJrIjoiYjhkMzEwODQtOGVjYS00MTQ0LWJkZjItODVjM2Q3NTEzNmM4IiwidCI6IjYyOGMwZTc3LTViNTUtNDRkZi04YmUxLWVjYTNiMzdiOWNkMCIsImMiOjR9&pageName=ReportSection',
     tokenType: models.TokenType.Embed,
     accessToken: undefined,
     settings: undefined,
@@ -107,7 +107,7 @@ export class AppComponent {
     } catch (error) {
       // Prepare status message for Embed failure
       await this.prepareDisplayMessageForEmbed(errorElement, errorClass);
-      this.displayMessage = `Failed to fetch config for report. Status: ${error.statusText} Status Code: ${error.status}`;
+     //this.displayMessage = `Failed to fetch config for report. Status: ${error.statusText} Status Code: ${error.status}`;
       console.error(this.displayMessage);
       return;
     }
@@ -138,7 +138,7 @@ export class AppComponent {
     await this.prepareDisplayMessageForEmbed(successElement, successClass);
 
     // Update the display message
-    this.displayMessage = 'Access token is successfully set. Loading Power BI report.';
+    this.displayMessage = 'Reporte CRECE de los Programas Presupuestales';
   }
 
   /**
