@@ -1,36 +1,41 @@
 <!-- Copyright (c) Microsoft Corporation.
 Licensed under the MIT License. -->
 <div class="header">
+  
   <div class="title">Secretaria de Finanzas, Inversion y Administracion</div>
 </div>
-
+<!-- <app-side-bar> </app-side-bar> -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ 
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Sistema de Informacion DGP</a>
+    
+    <a class="navbar-brand"  href="#">Sistema de Informacion DGP</a>
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button>   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
+        </li>       
         <li class="nav-item">
-          <a class="nav-link" href="#"><a class="text-primary">CRECE</a></a>
+          <a class="nav-link" href="#">CRECE</a>
+            <!-- <a class="nav-link active" aria-current="page" (click)="embedReport()">CRECE</a> -->
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Planeacion
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
+          <ul class="dropdown-menu" >
+            <li><a class="dropdown-item"  (click)="embedReport()" >CRECE</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <button (click)="embedReport()" >CRECE</button>
+          <!-- <button (click)="embedReport()" >CRECE</button> -->
         </li>
       </ul>
       <form class="d-flex">
@@ -40,7 +45,9 @@ Licensed under the MIT License. -->
     </div>
   </div>
 </nav>
-<div class="overflow-auto">
+
+
+<div class="overflow-auto">  
 <div class="controls" *ngIf="isEmbedded; else embedReportFlow">
   <button (click)="deleteVisual()">Delete Visual</button>
   <button (click)="hideFilterPane()">Hide Filter Pane</button>
@@ -48,23 +55,23 @@ Licensed under the MIT License. -->
   <div class="display-message" #status>{{ displayMessage }}</div> 
 </div>
 <ng-template #embedReportFlow>
-   <div class="display-message position" #status>
+   <!-- <div class="display-message position" #status>
     <label>{{ displayMessage }}</label>
-  </div> 
+  </div>  -->
   <!-- <div class="embed-report">
     <button (click)="embedReport()" id="embed-action" #embedReportBtn>CRECE</button>
-  </div> -->
-  <!-- <div class="separator"></div> -->
+  </div>  -->
+  <!-- <div class="separator"></div>  -->
 </ng-template>
 
 <powerbi-report [embedConfig]="reportConfig" [cssClassName]="reportClass" [phasedEmbedding]="phasedEmbeddingFlag" [eventHandlers]="eventHandlersMap">
 </powerbi-report>
-</div>
+</div> 
 
 
 <div class="footer">
   <div class="footer-text">
-     GitHub:
-    <a href="https://github.com/microsoft/powerBI-client-angular"> https://github.com/microsoft/PowerBI-client-angular </a> 
+     Fuentes de Datos:
+    <a href="https://docs.google.com/spreadsheets/d/1oHcCZfbWSQ0WM2Tw-JAj4198g1-6MHKQF5ziwVFtwqc/edit#gid=236664021&fvid=29341114"> https://docs.google.com/spreadsheets/d/1oHcCZfbWSQ0WM2Tw-JAj4198g1-6MHKQF5ziwVFtwqc/edit#gid=236664021&fvid=29341114 </a> 
   </div>
 </div>

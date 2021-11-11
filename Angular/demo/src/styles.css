@@ -1,12 +1,10 @@
+
 /* Copyright (c) Microsoft Corporation.
 Licensed under the MIT License. */
-
-
-
 .status-img {
   height: 20px;
-  margin-right: 5px;
-  width: 20px;
+  margin-right: 0px;
+  width: 0px;
 }
 
 iframe {
@@ -19,10 +17,24 @@ iframe {
 }
 
 .report-container {
-  height: 75vh;
-  margin: 8px auto;
-  width: 90%;
+  height: 80vh;
+  margin: 15px auto;
+  width: 90%; 
 }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body{
+  height: 100vh;
+  background-color:darkgray;
+  font-size: 13.5px;
+  }
+.ng-sidebar {
+  background-color:cornflowerblue;
+  width: 15rem;
+  /* margin-top: 50px;
+  margin-bottom: 50px; */
+}
+
+
