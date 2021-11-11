@@ -11,7 +11,7 @@ import { HomeComponent } from './Component/home/home.component';
 import { SidebarModule } from 'ng-sidebar';
 import { CreceComponent } from './Planeacion/crece/crece.component';
 import { ProgramasPresupuestariosComponent } from './Planeacion/programas-presupuestarios/programas-presupuestarios.component';
-
+import { AppRoutingModule } from './app.routes';
 
 @NgModule({
   declarations: [AppComponent, 
@@ -25,6 +25,7 @@ import { ProgramasPresupuestariosComponent } from './Planeacion/programas-presup
     SidebarModule.forRoot(),
     BrowserModule,
     HttpClientModule,
+    AppRoutingModule
    ],
   providers: [],
   bootstrap: [AppComponent],

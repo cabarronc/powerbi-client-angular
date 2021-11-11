@@ -4,7 +4,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ConfigResponse } from '../app.component';
+import { ConfigResponse } from '../Planeacion/crece/crece.component';
 
 @Injectable({
   providedIn: 'root',
