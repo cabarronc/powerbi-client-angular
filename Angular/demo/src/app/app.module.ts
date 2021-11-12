@@ -12,11 +12,12 @@ import { SidebarModule } from 'ng-sidebar';
 import { CreceComponent } from './Planeacion/crece/crece.component';
 import { ProgramasPresupuestariosComponent } from './Planeacion/programas-presupuestarios/programas-presupuestarios.component';
 import { AppRoutingModule } from './app.routes';
+import { PrincipalComponent } from './Component/principal/principal.component';
 
 @NgModule({
-  declarations: [AppComponent, 
+  declarations: [ AppComponent,
     SideBarComponent, 
-    HomeComponent, CreceComponent, ProgramasPresupuestariosComponent, 
+    HomeComponent, CreceComponent, ProgramasPresupuestariosComponent, PrincipalComponent, 
     ],
     
   imports: [BrowserModule, 

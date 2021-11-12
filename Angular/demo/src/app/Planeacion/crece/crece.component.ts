@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IHttpPostMessageResponse } from 'http-post-message';
 import { IReportEmbedConfiguration, models, Page, Report, service, VisualDescriptor } from 'powerbi-client';
 import { PowerBIReportEmbedComponent } from 'powerbi-client-angular';
@@ -9,6 +9,7 @@ import 'powerbi-report-authoring';
 import { errorClass, errorElement, hidden, position, reportUrl, successClass, successElement } from '../../../constants';
 import { HttpService } from '../../services/http.service';
 import {ChangeDetectionStrategy} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 
 // Handles the embed config response for embedding
@@ -26,7 +27,7 @@ export interface ConfigResponse {
   styleUrls: ['./crece.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreceComponent {
+export class CreceComponent implements OnInit{
 
 // Wrapper object to access report properties
 @ViewChild(PowerBIReportEmbedComponent) reportObj!: PowerBIReportEmbedComponent;
@@ -95,7 +96,12 @@ eventHandlersMap = new Map<string, (event?: service.ICustomEvent<any>) => void>(
   ['pageChanged', (event) => console.log(event)],
 ]);
 
-constructor(public httpService: HttpService, private element: ElementRef<HTMLDivElement>) {}
+constructor(public httpService: HttpService, private element: ElementRef<HTMLDivElement>, private route:ActivatedRoute) {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(paramMap =>{
+      console.log(paramMap);  
+    })
+  }
 
 /**
  * Embeds report
