@@ -17,7 +17,10 @@ import { PrincipalComponent } from './Component/principal/principal.component';
 @NgModule({
   declarations: [ AppComponent,
     SideBarComponent, 
-    HomeComponent, CreceComponent, ProgramasPresupuestariosComponent, PrincipalComponent, 
+    HomeComponent,
+     CreceComponent, 
+     ProgramasPresupuestariosComponent, 
+     PrincipalComponent, 
     ],
     
   imports: [BrowserModule, 
