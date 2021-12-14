@@ -13,6 +13,10 @@ import { CreceComponent } from './Planeacion/crece/crece.component';
 import { ProgramasPresupuestariosComponent } from './Planeacion/programas-presupuestarios/programas-presupuestarios.component';
 import { AppRoutingModule } from './app.routes';
 import { PrincipalComponent } from './Component/principal/principal.component';
+import { UsuariosComponent } from './Administracion/Usuarios/usuarios/usuarios.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [ AppComponent,
@@ -21,6 +25,7 @@ import { PrincipalComponent } from './Component/principal/principal.component';
      CreceComponent, 
      ProgramasPresupuestariosComponent, 
      PrincipalComponent, 
+     UsuariosComponent
     ],
     
   imports: [BrowserModule, 
@@ -29,7 +34,11 @@ import { PrincipalComponent } from './Component/principal/principal.component';
     SidebarModule.forRoot(),
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
+    
    ],
   providers: [],
   bootstrap: [AppComponent],
