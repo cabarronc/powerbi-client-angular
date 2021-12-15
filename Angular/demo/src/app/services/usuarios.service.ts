@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TarjetaService {
-  private myAppUrl = 'http://localhost:30515/';
+  private myAppUrl = 'http://localhost:8080/';
   private myApiUrl = 'api/Tarjeta/'
 
   constructor(private http: HttpClient) { }
