@@ -18,14 +18,14 @@
                         <h5 class="titulo">{{ accion | uppercase }} USUARIO</h5>
 
 
-                        <form [formGroup]="form" (ngSubmit)="guardarTarjeta()">
+                        <form [formGroup]="form" (ngSubmit)="guardarUsuario()">
 
                             <div class="input-group input-group-lg mb-3">
                                 <span class="input-group-text">
-                                    <i class="fas fa-user" [class.green-icon]="this.form.get('titular')?.valid"
-                                        [class.red-icon]="this.form.get('titular')?.invalid && this.form.get('titular')?.touched"></i>
+                                    <i class="fas fa-user" [class.green-icon]="this.form.get('nombre_usuario')?.valid"
+                                        [class.red-icon]="this.form.get('nombre_usuario')?.invalid && this.form.get('nombre_usuario')?.touched"></i>
                                 </span>
-                                <input formControlName="titular" type="text" class="form-control" placeholder="Nombre">
+                                <input formControlName="nombre_usuario" type="text" class="form-control" placeholder="Nombre">
                             </div>
                             <div class="input-group input-group-lg mb-3">
                                 <span class="input-group-text">
@@ -75,15 +75,15 @@
                         <h5 class="titulo">LISTADO DE USUARIOS</h5>
                         <table class="table">
                             <tbody>
-                                <tr *ngFor="let tarjeta of listTarjetas">
-                                    <td>{{ tarjeta.titular }}</td>
-                                    <td>{{ tarjeta.numeroTarjeta }}</td>
-                                    <td>{{ tarjeta.fechaExpiracion }}</td>
+                                <tr *ngFor="let usuario of listUsuarios">
+                                    <td>{{ usuario.nombre_usuario }}</td>
+                                    <td>{{ usuario.numeroTarjeta }}</td>
+                                    <td>{{ usuario.fechaExpiracion }}</td>
                                     <td>
-                                        <i (click)="editarTarjeta(tarjeta)" class="far fa-edit text-info"></i>
+                                        <i (click)="editarUsuario(usuario)" class="far fa-edit text-info"></i>
                                     </td>
                                     <td>
-                                        <i (click)="eliminarTarjeta(tarjeta.id)"
+                                        <i (click)="eliminarUsuario(usuario.id)"
                                             class="far fa-trash-alt text-danger"></i>
                                     </td>
                                 </tr>

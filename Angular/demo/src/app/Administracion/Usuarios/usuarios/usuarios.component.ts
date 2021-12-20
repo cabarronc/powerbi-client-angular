@@ -1,7 +1,7 @@
 import { Component, OnInit, ɵɵqueryRefresh } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { TarjetaService } from '../../../services/usuarios.service';
+import { UsuarioServices } from '../../../services/usuarios.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -10,7 +10,7 @@ import { TarjetaService } from '../../../services/usuarios.service';
 })
 export class UsuariosComponent implements OnInit {
 
-  listTarjetas: any[] = [];
+  listUsuarios: any[] = [];
   accion = 'Agregar';
   form: FormGroup;
   id: number | undefined;
@@ -18,16 +18,16 @@ export class UsuariosComponent implements OnInit {
   
   ngOnInit(): void {
     
-    this.obtenerTarjetas();
+    this.obtenerUsuarios();
     console.log("se esta cargando");
   }
   
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
-    private _tarjetaService: TarjetaService) {
+    private _usuarioServices: UsuarioServices) {
     
     this.form = this.fb.group({
-      titular: ['', Validators.required],
+      nombre_usuario: ['', Validators.required],
       numeroTarjeta: ['', [Validators.required, Validators.maxLength(16), Validators.minLength(16)]],
       fechaExpiracion: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(5)]],
       cvv: ['', [Validators.required, Validators.maxLength(3), Validators.minLength(3)]]
@@ -37,9 +37,9 @@ export class UsuariosComponent implements OnInit {
 
 
 
-  obtenerTarjetas() {
-    this._tarjetaService.getListTarjetas().subscribe(_data => {
-     this.listTarjetas = _data
+  obtenerUsuarios() {
+    this._usuarioServices.getListUsuario().subscribe(_data => {
+     this.listUsuarios = _data
       console.log(_data);
       
       // debugger
@@ -48,10 +48,10 @@ export class UsuariosComponent implements OnInit {
     })
   }
 
-  guardarTarjeta() {
+  guardarUsuario() {
 
     const tarjeta: any = {
-      titular: this.form.get('titular')?.value,
+      nombre_usuario: this.form.get('nombre_usuario')?.value,
       numeroTarjeta: this.form.get('numeroTarjeta')?.value,
       fechaExpiracion: this.form.get('fechaExpiracion')?.value,
       cvv: this.form.get('cvv')?.value,
@@ -59,9 +59,9 @@ export class UsuariosComponent implements OnInit {
 
     if(this.id == undefined) {
       // Agregamos una nueva tarjeta
-        this._tarjetaService.saveTarjeta(tarjeta).subscribe(_data => {
+        this._usuarioServices.saveUsuario(tarjeta).subscribe(_data => {
           this.toastr.success('La tarjeta fue registrada con exito!', 'Tarjeta Registrada');
-          this.obtenerTarjetas();
+          this.obtenerUsuarios();
           this.form.reset();
         }, error => {
           this.toastr.error('Opss.. ocurrio un error','Error')
@@ -71,12 +71,12 @@ export class UsuariosComponent implements OnInit {
 
       tarjeta.id = this.id;
       // Editamos tarjeta
-      this._tarjetaService.updateTarjeta(this.id,tarjeta).subscribe(_data => {
+      this._usuarioServices.updateUsuario(this.id,tarjeta).subscribe(_data => {
         this.form.reset();
         this.accion = 'Agregar';
         this.id = undefined;
         this.toastr.info('La tarjeta fue actualizada con exito!', 'Tarjeta Actualizada');
-        this.obtenerTarjetas();
+        this.obtenerUsuarios();
       }, error => {
         console.log(error);
       })
@@ -86,25 +86,25 @@ export class UsuariosComponent implements OnInit {
    
   }
 
-  eliminarTarjeta(id: number) {
-    this._tarjetaService.deleteTarjeta(id).subscribe(_data => {
+  eliminarUsuario(id: number) {
+    this._usuarioServices.deleteUsuario(id).subscribe(_data => {
       this.toastr.error('La tarjeta fue eliminada con exito!','Tarjeta eliminada');
-      this.obtenerTarjetas();
+      this.obtenerUsuarios();
     }, error => {
       console.log(error);
     })
 
   }
 
-  editarTarjeta(tarjeta: any) {
+  editarUsuario(usuario: any) {
     this.accion = 'Editar';
-    this.id = tarjeta.id;
+    this.id = usuario.id;
 
     this.form.patchValue({
-      titular: tarjeta.titular,
-      numeroTarjeta: tarjeta.numeroTarjeta,
-      fechaExpiracion: tarjeta.fechaExpiracion,
-      cvv: tarjeta.cvv
+      nombre_usuario: usuario.nombre_usuario,
+      numeroTarjeta: usuario.numeroTarjeta,
+      fechaExpiracion: usuario.fechaExpiracion,
+      cvv: usuario.cvv
     })
   }
 

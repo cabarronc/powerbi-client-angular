@@ -5,25 +5,27 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class TarjetaService {
-  private myAppUrl = 'http://localhost:8080/';
-  private myApiUrl = 'api/Tarjeta/'
+export class UsuarioServices{
+  // private myAppUrl = 'http://localhost:8080/';
+  private myAppUrl = 'http://localhost:30515/';
+  
+  private myApiUrl = 'api/Usuario/'
 
   constructor(private http: HttpClient) { }
 
-  getListTarjetas(): Observable<any> {
+  getListUsuario(): Observable<any> {
     return this.http.get(this.myAppUrl + this.myApiUrl);
   }
 
-  deleteTarjeta(id: number): Observable<any> {
+  deleteUsuario(id: number): Observable<any> {
     return this.http.delete(this.myAppUrl + this.myApiUrl + id)
   }
 
-  saveTarjeta(tarjeta: any): Observable<any> {
+  saveUsuario(tarjeta: any): Observable<any> {
     return this.http.post(this.myAppUrl + this.myApiUrl, tarjeta);
   }
 
-  updateTarjeta(id: number, tarjeta: any): Observable<any> {
+  updateUsuario(id: number, tarjeta: any): Observable<any> {
     return this.http.put(this.myAppUrl + this.myApiUrl + id, tarjeta);
   }
 }

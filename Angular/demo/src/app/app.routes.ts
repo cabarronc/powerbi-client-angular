@@ -4,13 +4,17 @@ import { UsuariosComponent } from './Administracion/Usuarios/usuarios/usuarios.c
 import { HomeComponent } from './Component/home/home.component';
 import { PrincipalComponent } from './Component/principal/principal.component';
 import { CreceComponent } from './Planeacion/crece/crece.component';
+import { LoginComponent } from "./login/login.component";
+import { RegisterComponent } from "./register/register.component";
 
 
 const routes: Routes = [
     { path: 'crece', component:CreceComponent },
     { path: 'home', component:HomeComponent },
     { path: 'principal', component:PrincipalComponent},
-    { path: 'usuarios', component:UsuariosComponent}
+    { path: 'usuarios', component:UsuariosComponent},
+    { path: "login", component: LoginComponent, pathMatch: "full" },
+  { path: "register", component: RegisterComponent, pathMatch: "full" }
   ];
   @NgModule({
     imports: [RouterModule.forRoot(routes)],
