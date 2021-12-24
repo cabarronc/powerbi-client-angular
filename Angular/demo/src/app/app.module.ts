@@ -19,7 +19,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { FormsModule } from "@angular/forms"
+import { FormsModule } from "@angular/forms";
+import { CookieService } from 'ngx-cookie-service';
+
 
 @NgModule({
   declarations: [ AppComponent,
@@ -42,9 +44,10 @@ import { FormsModule } from "@angular/forms"
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     FormsModule
+   
     
    ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

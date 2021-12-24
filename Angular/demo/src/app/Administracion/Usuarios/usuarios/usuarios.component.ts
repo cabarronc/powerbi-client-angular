@@ -14,29 +14,7 @@ export class UsuariosComponent implements OnInit {
   accion = 'Agregar';
   form: FormGroup;
   id: number | undefined;
-
   
-  ngOnInit(): void {
-    
-    this.obtenerUsuarios();
-    console.log("se esta cargando");
-  }
-  
-  constructor(private fb: FormBuilder,
-    private toastr: ToastrService,
-    private _usuarioServices: UsuarioServices) {
-    
-    this.form = this.fb.group({
-      nombre_usuario: ['', Validators.required],
-      numeroTarjeta: ['', [Validators.required, Validators.maxLength(16), Validators.minLength(16)]],
-      fechaExpiracion: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(5)]],
-      cvv: ['', [Validators.required, Validators.maxLength(3), Validators.minLength(3)]]
-    })
-   
-   }
-
-
-
   obtenerUsuarios() {
     this._usuarioServices.getListUsuario().subscribe(_data => {
      this.listUsuarios = _data
@@ -47,20 +25,39 @@ export class UsuariosComponent implements OnInit {
       console.log(error);
     })
   }
-
+  
+  
+  
+  constructor(private fb: FormBuilder,
+    private toastr: ToastrService,
+    private _usuarioServices: UsuarioServices) {
+    
+    this.form = this.fb.group({
+      nombre: ['', Validators.required],
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.maxLength(3), Validators.minLength(3)]],
+      area: ['', [Validators.required]],
+    })
+   
+   }
+   ngOnInit(): void {
+    
+    this.obtenerUsuarios();
+    console.log(this.obtenerUsuarios());
+  }
   guardarUsuario() {
 
-    const tarjeta: any = {
-      nombre_usuario: this.form.get('nombre_usuario')?.value,
-      numeroTarjeta: this.form.get('numeroTarjeta')?.value,
-      fechaExpiracion: this.form.get('fechaExpiracion')?.value,
-      cvv: this.form.get('cvv')?.value,
+    const usuario: any = {
+      nombre: this.form.get('nombre')?.value,
+      email: this.form.get('email')?.value,
+      password: this.form.get('password')?.value,
+      area: this.form.get('area')?.value,
     }
 
     if(this.id == undefined) {
       // Agregamos una nueva tarjeta
-        this._usuarioServices.saveUsuario(tarjeta).subscribe(_data => {
-          this.toastr.success('La tarjeta fue registrada con exito!', 'Tarjeta Registrada');
+        this._usuarioServices.saveUsuario(usuario).subscribe(_data => {
+          this.toastr.success('El usuario fue registrado con exito!', 'Usuario Registrado');
           this.obtenerUsuarios();
           this.form.reset();
         }, error => {
@@ -69,13 +66,13 @@ export class UsuariosComponent implements OnInit {
         })
     }else {
 
-      tarjeta.id = this.id;
+      usuario.id = this.id;
       // Editamos tarjeta
-      this._usuarioServices.updateUsuario(this.id,tarjeta).subscribe(_data => {
+      this._usuarioServices.updateUsuario(this.id,usuario).subscribe(_data => {
         this.form.reset();
         this.accion = 'Agregar';
         this.id = undefined;
-        this.toastr.info('La tarjeta fue actualizada con exito!', 'Tarjeta Actualizada');
+        this.toastr.info('El usuario fue actualizada con exito!', 'Usuario Actualizado');
         this.obtenerUsuarios();
       }, error => {
         console.log(error);
@@ -88,7 +85,7 @@ export class UsuariosComponent implements OnInit {
 
   eliminarUsuario(id: number) {
     this._usuarioServices.deleteUsuario(id).subscribe(_data => {
-      this.toastr.error('La tarjeta fue eliminada con exito!','Tarjeta eliminada');
+      this.toastr.error('El usuario fue eliminado con exito!','Usuario eliminado');
       this.obtenerUsuarios();
     }, error => {
       console.log(error);
@@ -101,10 +98,10 @@ export class UsuariosComponent implements OnInit {
     this.id = usuario.id;
 
     this.form.patchValue({
-      nombre_usuario: usuario.nombre_usuario,
-      numeroTarjeta: usuario.numeroTarjeta,
-      fechaExpiracion: usuario.fechaExpiracion,
-      cvv: usuario.cvv
+      nombre: usuario.nombre,
+      email: usuario.email,
+      pass: usuario.pass,
+      area: usuario.area
     })
   }
 

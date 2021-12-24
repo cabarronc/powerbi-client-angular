@@ -1,19 +1,22 @@
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { UserService } from "../services/user.service";
 import { ActivatedRoute } from '@angular/router';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-register",
   templateUrl: "./register.component.html",
   styleUrls: ["./register.component.css"]
 })
+
+  
 export class RegisterComponent implements OnInit{
   email: string ="";
-  password: string="";
-  confirmPassword: string ="";
+  password: string= "";
+  cconfirmPassword:string="";
+  passwordError: boolean = true;
 
-  constructor(private route:ActivatedRoute) { }
-  
+  constructor(public userService: UserService, private route:ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap=>{
@@ -23,9 +26,11 @@ export class RegisterComponent implements OnInit{
     )
 
   }
-
   register() {
-    console.log(this.email);
-    console.log(this.password);
+    const user = { email: this.email, password: this.password };
+    this.userService.register(user).subscribe(data => {
+      console.log(data);
+      this.userService.setToken(data.token);
+    });
   }
 }

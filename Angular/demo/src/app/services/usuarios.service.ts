@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UsuarioServices{
   // private myAppUrl = 'http://localhost:8080/';
-  private myAppUrl = 'http://localhost:30515/';
+  private myAppUrl = 'http://localhost:45186/';
   
   private myApiUrl = 'api/Usuario/'
 
@@ -21,11 +21,11 @@ export class UsuarioServices{
     return this.http.delete(this.myAppUrl + this.myApiUrl + id)
   }
 
-  saveUsuario(tarjeta: any): Observable<any> {
-    return this.http.post(this.myAppUrl + this.myApiUrl, tarjeta);
+  saveUsuario(usuario: any): Observable<any> {
+    return this.http.post(this.myAppUrl + this.myApiUrl, usuario);
   }
 
-  updateUsuario(id: number, tarjeta: any): Observable<any> {
-    return this.http.put(this.myAppUrl + this.myApiUrl + id, tarjeta);
+  updateUsuario(id: number, usuario: any): Observable<any> {
+    return this.http.put(this.myAppUrl + this.myApiUrl + id, usuario);
   }
 }
